@@ -19,3 +19,16 @@ UTF-8
 Go 的许可证是完全开源的，查阅Go 发布的源码中的LICENSE 文件。
 开心
 用Go 写程序会非常开心！
+
+内建函数
+内建函数的用途简介：
+close ：用于 channel 通讯。使用它来关闭 channel。 
+delete ：用于在 map 中删除实例。 
+len 和 cap ：可用于不同的类型，len 用于返回字符串、slice 和数组的长度。
+new ：用于各种类型的内存分配。
+make ：用于内建类型（map、slice 和 channel）的内存分配。
+copy ：用于复制 slice。参阅本章的 “slice”。 
+append ：用于追加 slice。参阅本章的 “slice”。 
+panic 和 recover ：用于异常处理机制。
+print 和 println ：是底层打印函数，可以在不引入 fmt 包的情况下使用。它们主要用于调试。 
+complex、real 和 imag ：全部用于处理 复数。有了之前给的简单的例子，不用再进一步讨论复数了。
