@@ -55,7 +55,8 @@ func main() {
     for months, days := range monthdays {   //键没有使用，因此用_, days
         fmt.Printf("mouth:%s days:%d\n", months, days)
     }
-
+    delete(monthdays, "Jan")
+    fmt.Println(monthdays)
 }
 func printPointer(any interface{}) {
     fmt.Printf("the pointer is : %p \n", &any)
