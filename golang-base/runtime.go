@@ -30,4 +30,8 @@ func main() {
 	var input string
 	fmt.Scanln(&input)
 	fmt.Println(total_tickets, "done") //退出时打印还有多少票
+	fmt.Println(runtime.Version())
+	fmt.Println(runtime.GOOS)
+	fmt.Println(runtime.NumCPU())
+	fmt.Println(runtime.GOARCH)
 }
