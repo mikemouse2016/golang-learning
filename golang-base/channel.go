@@ -23,12 +23,15 @@ func main() {
 	time.Sleep(2 * time.Second)
 	fmt.Println("Reader Wake up...")
 
-	msg := <-channel
+	msg, b := <-channel
+	fmt.Println(b)
 	fmt.Println("Reader: ", msg)
 
-	msg = <-channel
+	msg, b = <-channel
+	fmt.Println(b)
 	fmt.Println("Reader: ", msg)
 
-	msg = <-channel //Writer在Sleep，这里在阻塞
+	msg, b = <-channel //Writer在Sleep，这里在阻塞
+	fmt.Println(b)
 	fmt.Println("Reader: ", msg)
 }

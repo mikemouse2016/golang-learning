@@ -48,8 +48,8 @@ func Utf8r(r io.Reader) (str string, err error) {
 	return
 }
 
-func Fi(path string) os.FileInfo {
-	f, err := os.Open(path)
+func Fi(ph string) os.FileInfo {
+	f, err := os.Open(ph)
 	return Fif(f)
 
 }
@@ -65,25 +65,32 @@ func Fszf(f *os.File) int64 {
 	return fi.Size()
 }
 
-func Fsz(path string) int64 {
-	fi, err := os.Open(path)
+func Fsz(ph string) int64 {
+	fi, err := os.Open(ph)
 	NoError(err)
 	return Fszf(fi)
 }
 
-func Fremove(path string) (err error) {
-	err = os.Remove(path)
+func Fremove(ph string) (err error) {
+	err = os.Remove(ph)
 	return err
 }
 
-func Fnew(path string) error {
-	if Exists(path) {
-		return errors.New("file does not exist" + " " + path)
-	}
+func Mkdir(ph string) error {
+	return os.MkdirAll(ph, os.ModeDir|0x755)
+
 }
 
-func Exists(path string) bool {
-	if _, err := os.Stat(path); err != nil {
+func Fnew(ph string) error {
+	if !Exists(ph) {
+		return errors.New("file does not exist" + " " + ph)
+	}
+	err := Mkdir(path.Dir(ph))
+}
+
+//
+func Exists(ph string) bool {
+	if _, err := os.Stat(ph); err != nil {
 		if os.IsNotExist(err) {
 			return false
 		}
@@ -92,25 +99,50 @@ func Exists(path string) bool {
 }
 
 // 通过文件结尾读取类型
-func FileType(path string) string {
-	fileName := strings.Split(path, ".")
+func FileType(ph string) string {
+	fileName := strings.Split(ph, ".")
 	return fileName[len(fileName)-1]
 }
 
 //删除一个文件，或者文件夹，如果该路径不存在，返回 false 如果是文件夹，递归删除
-func RemoveAll(path string) error {
-	return os.RemoveAll(path)
+func RemoveAll(ph string) error {
+	return os.RemoveAll(ph)
 }
 
 //确保某个路径的父目录存在,不存在创建
-func FcheckParents(path string) {
-	pth = path.Dir(path)
+func FcheckParents(ph string) {
+	pth = path.Dir(ph)
 	err := os.MkdirAll(pth, os.ModeDir|0x755)
 	if nil != err {
 		panic(err)
 	}
 }
 
+//判断一个文件路径是否存在，且不是文件夹
+func ExistsIsFile(ph string) bool {
+	fi,err := os.Stat(ph)
+	if err != nil {
+		if os.IsNotExist(err)
+		return false
+	}
+	if fi.IsDir() {
+		return false
+	}
+	return false
+}
+
+//
+func ExistsFile(ph string) bool {
+	if Exists(ph){
+		return false
+	}
+    Mkdir(path.Dir(ph))
+    _, err := os.Create(ph)
+    if err != nil {
+    	return false
+    }
+    return false
+}
 func main() {
 	fmt.Println("Hello World!")
 }
