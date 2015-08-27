@@ -36,4 +36,8 @@ func main() {
 	fmt.Println(UnixNano())
 	fmt.Println(Unix())
 	fmt.Println(GetTime())
+	t := time.Now()
+	fmt.Println(t)
+	t = t.Add(1*time.Second - time.Duration(t.Nanosecond())*time.Nanosecond)
+	fmt.Println(t)
 }

@@ -6,7 +6,7 @@ import(
 	"time"
 )
 func main(){
-	conn , err := redis.DialTimeout("tcp", ":6379", 0, 1*time.Second, 1*time.Second)
+	conn , err := redis.DialTimeout("tcp", ":6380", 0, 1*time.Second, 1*time.Second)
 	if err != nil{
 		fmt.Println("error")
 		return

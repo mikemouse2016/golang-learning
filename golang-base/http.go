@@ -7,7 +7,7 @@ import (
 	"strings"
 )
 
-func sayHelloName(w http.ResponseWriter, r *http.Request) {
+func sayHelloName1(w http.ResponseWriter, r *http.Request) {
 
 	// 解析参数，默认是不会解析的
 	//r.ParseForm()
@@ -18,6 +18,26 @@ func sayHelloName(w http.ResponseWriter, r *http.Request) {
 	fmt.Println("ContentLength", r.ContentLength)
 	fmt.Println("RemoteAddr", r.RemoteAddr)
 	fmt.Println("Host", r.Host)
+	fmt.Println(r.Header.Get("X-Real-IP"))
+	for k, v := range r.Form {
+		fmt.Println("key:", k)
+		fmt.Println("val:", strings.Join(v, ""))
+	}
+	fmt.Fprintf(w, "Hello world")
+}
+
+func sayHelloName2(w http.ResponseWriter, r *http.Request) {
+
+	// 解析参数，默认是不会解析的
+	//r.ParseForm()
+	fmt.Println(r.Form)
+	fmt.Println("URL", r.URL)
+	fmt.Println("Proto", r.Proto)
+	fmt.Println("Method", r.Method)
+	fmt.Println("ContentLength", r.ContentLength)
+	fmt.Println("RemoteAddr", r.RemoteAddr)
+	fmt.Println("Host", r.Host)
+	fmt.Println(r.Header.Get("X-Real-IP"))
 	for k, v := range r.Form {
 		fmt.Println("key:", k)
 		fmt.Println("val:", strings.Join(v, ""))
@@ -28,10 +48,11 @@ func sayHelloName(w http.ResponseWriter, r *http.Request) {
 func main() {
 
 	// 设置访问的路由
-	http.HandleFunc("/", sayHelloName)
+	http.HandleFunc("/test1", sayHelloName1)
+	http.HandleFunc("/test2", sayHelloName2)
 
 	// 设置监听的端口
-	err := http.ListenAndServe(":9000", nil)
+	err := http.ListenAndServe("127.0.0.1:8080", nil)
 
 	if err != nil {
 		log.Fatal("ListenAndServe: ", err)

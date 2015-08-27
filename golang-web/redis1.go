@@ -20,7 +20,7 @@ func (r ResourceConn) Close() {
 
 func main() {
     p := pools.NewResourcePool(func() (pools.Resource, error) {
-        c, err := redis.Dial("tcp", ":6379")
+        c, err := redis.Dial("tcp", ":6380")
         return ResourceConn{c}, err
     }, 1, 2, time.Minute)
     defer p.Close()
