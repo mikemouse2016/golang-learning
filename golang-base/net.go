@@ -4,23 +4,30 @@ import (
 	"fmt"
 	"io/ioutil"
 	"net/http"
-	"time"
+//	"time"
+        "strings"
 )
 
 func main() {
-	for i := 0; i < 1000; i++ {
-		time.Sleep(time.Second * 2)
-		r, err := http.Get("http://www.thel-service.com/")
+//	for i := 0; i < 1000; i++ {
+//		time.Sleep(time.Second * 2)
+		r, err := http.Get("http://localhost/export.txt")
 		if err != nil {
 			fmt.Println(err)
 			return
 		}
-                fmt.Print(i)
+//                fmt.Print(i)
+//		b, err := ioutil.ReadAll(r.Body)
 		b, err := ioutil.ReadAll(r.Body)
 		r.Body.Close()
-		if err == nil {
-			fmt.Printf("%s", string(b))
-		}
-	}
+//		if err == nil {
+//			fmt.Printf("%s", string(b))
+//		}
+                fields := strings.Fields(string(b))
+                for key,value := range fields{
+
+                    fmt.Println(key, value)
+                }
+//	}
 
 }

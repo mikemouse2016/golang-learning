@@ -28,6 +28,7 @@ func (*Hello) Get (ctx *jas.Context) { // `GET /v1/hello`
     a := Hello{Id:1,Name:"jianghuan"}
 	a.a.a = 33
 	ctx.Data = a;
+       fmt.Println(ctx.Id)
     //response: `{"data":"hello world","error":null}`
 }
 
@@ -43,7 +44,6 @@ func (*Hello) Post (ctx *jas.Context) { // `GET /v1/hello`
 	fmt.Println(ctx.Form.Get("id"))
 	fmt.Println(ctx.Form.Get("a"))
 	ctx.Data = Hello{Id:1,Name:"jianghuan"}
-	
     //response: `{"data":"hello world","error":null}`
 }
 
@@ -62,8 +62,29 @@ func (*Users) Photo (ctx *jas.Context) {
     _, _, _, _, _, _ = name, age, grade, err,password, email
 }
 */
+
+type Match struct {}
+
+//func (*Users) Gap() string {
+//		return ":name"
+//}
+
+func (*Match) Photo (ctx *jas.Context) {// `GET /users/:name/photo`
+	// suppose the request path is `/users/john/photo`
+        name := ctx.GapSegment("") // "john"
+        _ = name
+}
+
+func (*Match) UserId (ctx *jas.Context) { //`GET /users/:name/photo/:id`
+	// suppose the request path is `/users/john/photo/7`
+	id := ctx.Id // 7
+        fmt.Println(321)
+        fmt.Println(id)
+        _ = id
+}
+
 func main () {
-    router := jas.NewRouter(new(Hello))
+    router := jas.NewRouter(new(Hello), new(Match))
     router.BasePath = "/v1/"
     fmt.Println(router.HandledPaths(true))
     //output: `GET /v1/hello`
