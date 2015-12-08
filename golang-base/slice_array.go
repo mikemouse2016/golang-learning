@@ -21,7 +21,7 @@ func main() {
 
     var array[10]int
     slice := array[0:4]
-    
+
     fmt.Println(len(slice), cap(slice),len(array), cap(array))
 
     a := [...]int{1, 2, 3, 4, 5}
@@ -37,7 +37,7 @@ func main() {
     s2 = append(s1, 3, 5, 7)
     s3 = append(s2, s0...)
     fmt.Println(cap(s1), cap(s2), cap(s3))
-    
+
     b := [...]int{0, 1, 2, 3, 4, 5, 6, 7}
     s := make([]int, 6)
     n1 := copy(s, b[0:])   //n1 == 6, s == []int{0, 1, 2, 3, 4, 5}

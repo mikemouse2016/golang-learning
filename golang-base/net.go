@@ -12,14 +12,16 @@ func main() {
 //	for i := 0; i < 1000; i++ {
 //		time.Sleep(time.Second * 2)
 		r, err := http.Get("http://localhost/export.txt")
+                if r != nil {
+		    defer r.Body.Close()
+                }
 		if err != nil {
-			fmt.Println(err)
-			return
+		    fmt.Println(err)
+		    return
 		}
 //                fmt.Print(i)
 //		b, err := ioutil.ReadAll(r.Body)
 		b, err := ioutil.ReadAll(r.Body)
-		r.Body.Close()
 //		if err == nil {
 //			fmt.Printf("%s", string(b))
 //		}

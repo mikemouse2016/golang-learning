@@ -11,26 +11,21 @@ func main() {
 	fmt.Println(len(a), cap(a), a)
 	a = append(a, 10)
 	fmt.Println(len(a), cap(a), a)
+/*
+Go中的数组是数值，因此当你向函数中传递数组时，函数会得到原始数组数据的一份复制
+更新原始数组的数据，可以使用数组指针类型
+*/
+        x := [3]int{1,2,3}
+        func(arr [3]int) {
+            arr[0] = 7
+            fmt.Println(arr) //prints [7 2 3]
+        }(x)
+        fmt.Println(x) //prints [1 2 3] (not ok if you need [7 2 3])
+
+        func(arr *[3]int) {
+            (*arr)[0] = 7
+            fmt.Println(arr) //prints &[7 2 3]
+        }(&x)
+        fmt.Println(x) //prints [7 2 3]
 }
 
-curl -XPOST localhost:9200/test -d '{
-  "settings":{
-      "number_of_shards":1
-  },
-  "mappings":{
-      "type1":{
-          "_source":{"enabled":false},
-          "preperties":{
-              "field1":{"type":"string",
-                      "index":"not_analyzed"
-              }
-          }
-      }
-  }
-}'
-
-curl -XPUT 'http://localhost:9200/twitter/tweet/1'-d '{
-  "user":"kimchy",
-  "post_date":"2012-12-12",
-  "message":"trying out ElasticSearch!"
-}'
