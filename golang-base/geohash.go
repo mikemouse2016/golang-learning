@@ -6,8 +6,8 @@ import (
 )
 
 func main() {
-    latitude := 39.92324
-    longitude := 116.3906
+    latitude := 31.187084
+    longitude := 121.413873
     precision := 5
 
     hash, box := geohash.Encode(latitude, longitude, precision)
