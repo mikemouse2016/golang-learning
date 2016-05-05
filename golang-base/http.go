@@ -10,7 +10,8 @@ import (
 func sayHelloName1(w http.ResponseWriter, r *http.Request) {
 
 	// 解析参数，默认是不会解析的
-	//r.ParseForm()
+	r.ParseForm()
+        fmt.Println(1111)
 	fmt.Println(r.Form)
 	fmt.Println("URL", r.URL)
 	fmt.Println("Proto", r.Proto)
@@ -29,7 +30,7 @@ func sayHelloName1(w http.ResponseWriter, r *http.Request) {
 func sayHelloName2(w http.ResponseWriter, r *http.Request) {
 
 	// 解析参数，默认是不会解析的
-	//r.ParseForm()
+	r.ParseForm()
 	fmt.Println(r.Form)
 	fmt.Println("URL", r.URL)
 	fmt.Println("Proto", r.Proto)
@@ -48,7 +49,7 @@ func sayHelloName2(w http.ResponseWriter, r *http.Request) {
 func sayHelloName3(w http.ResponseWriter, r *http.Request) {
 
 	// 解析参数，默认是不会解析的
-	//r.ParseForm()
+	r.ParseForm()
 	fmt.Println(r.Form)
 	fmt.Println("URL", r.URL)
 	fmt.Println("Proto", r.Proto)

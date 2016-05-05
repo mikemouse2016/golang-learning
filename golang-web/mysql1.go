@@ -8,8 +8,7 @@ import (
 )
 
 func main() {
-	db, err := sql.Open("mysql", "root:ThelCN1987@tcp(datadb2-slave1.c2qv3rjxe1pa.rds.cn-north-1.amazonaws.com.cn:3306)/stay?charset=utf8mb4")
-	//db, err := sql.Open("mysql", "root:devchj@theL0805@tcp(203.166.162.94:3306)/stay?charset=utf8mb4")
+	db, err := sql.Open("mysql", "root:devchj@theL0805@tcp(localhost:3306)/stay?charset=utf8mb4")
 	checkErr(err)
 
 	//查询数据
