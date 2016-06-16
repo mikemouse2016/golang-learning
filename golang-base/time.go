@@ -30,14 +30,26 @@ func ParseDate(dstr string) time.Time {
 	t, _ := time.Parse(FORMAT_DATE_TIME, dstr)
 	return t
 }
+
+func Utc() string {
+	return strconv.FormatInt(time.Now().UTC().Unix(), 10)
+
+}
+
+func Date() {
+	fmt.Println(time.Unix(time.Now().UTC().Unix(), 0))
+	fmt.Println(time.Unix(time.Now().Unix(), 0))
+}
 func main() {
 	name, off := time.Now().Zone()
 	fmt.Println(name, off)
 	fmt.Println(UnixNano())
 	fmt.Println(Unix())
+        fmt.Println(Utc())
 	fmt.Println(GetTime())
 	t := time.Now()
 	fmt.Println(t)
 	t = t.Add(1*time.Second - time.Duration(t.Nanosecond())*time.Nanosecond)
 	fmt.Println(t)
+        Date()
 }
