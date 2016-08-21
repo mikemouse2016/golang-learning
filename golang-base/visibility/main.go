@@ -1,20 +1,20 @@
 package main
 
-import(
-    "./v1"
-    "./v2"
-    "fmt"
+import (
+	"./v1"
+	"./v2"
+	"fmt"
 )
 
-func main(){
-    v1.Demo()
-//    v1.demo()  //error
-    v2.Demo()
-//    var d v2.demo  //error
-    var test v2.Test
-    test.B = 20
-//    test.a = 10  //error
-    fmt.Println(test)
+func main() {
+	v1.Demo()
+	//    v1.demo()  //error
+	v2.Demo()
+	//    var d v2.demo  //error
+	var test v2.Test
+	test.B = 20
+	//    test.a = 10  //error
+	fmt.Println(test)
 }
 
 /*

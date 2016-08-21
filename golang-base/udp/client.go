@@ -1,4 +1,5 @@
 package main
+
 import (
 	"encoding/binary"
 	"flag"
@@ -7,8 +8,10 @@ import (
 	"os"
 	"time"
 )
+
 var host = flag.String("host", "localhost", "host")
 var port = flag.String("port", "37", "port")
+
 //go run timeclient.go -host time.nist.gov
 func main() {
 	flag.Parse()

@@ -1,8 +1,8 @@
 package main
 
-import(
-    "gopkg.in/redis.v3"
-    "fmt"
+import (
+	"fmt"
+	"gopkg.in/redis.v3"
 )
 
 var client = GetRedis()
@@ -21,12 +21,12 @@ func GetRedis() *redis.Client {
 	return client
 }
 
-func main(){
-     v:=[]string{}
+func main() {
+	v := []string{}
 
-     v=append(v, "a:3278")
-     v=append(v, "a")
-     b := [][]byte{[]byte("a"), []byte("a:3278")}
-//     fmt.Println(client.Get("a:3278").Result())
-     fmt.Println(client.MGet(v...).Result())
+	v = append(v, "a:3278")
+	v = append(v, "a")
+	b := [][]byte{[]byte("a"), []byte("a:3278")}
+	//     fmt.Println(client.Get("a:3278").Result())
+	fmt.Println(client.MGet(v...).Result())
 }

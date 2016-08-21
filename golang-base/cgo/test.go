@@ -10,13 +10,13 @@ int display(){
 import "C"
 
 import (
-    "unsafe"
-    "fmt"
+	"fmt"
+	"unsafe"
 )
 
 func main() {
-    cstr := C.CString("Hello, world")
-    C.puts(cstr)
-    fmt.Println(C.display())
-    C.free(unsafe.Pointer(cstr))
+	cstr := C.CString("Hello, world")
+	C.puts(cstr)
+	fmt.Println(C.display())
+	C.free(unsafe.Pointer(cstr))
 }

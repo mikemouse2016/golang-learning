@@ -1,4 +1,5 @@
 package main
+
 import (
 	"encoding/binary"
 	"flag"
@@ -7,8 +8,10 @@ import (
 	"os"
 	"time"
 )
+
 var host = flag.String("host", "", "host")
 var port = flag.String("port", "37", "port")
+
 func main() {
 	flag.Parse()
 	addr, err := net.ResolveUDPAddr("udp", *host+":"+*port)
